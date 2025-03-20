@@ -28,7 +28,32 @@ becomes C. To change a message back, each letter is replaced by the one three be
 
 
 PROGRAM :-
-
-
+```
+def caesar_cipher(text, key, mode='encrypt'):
+    result = ""
+    for char in text:
+        if char.isalpha():
+            ascii_offset = ord('A') if char.isupper() else ord('a')
+            if mode == 'encrypt':
+                shifted = (ord(char) - ascii_offset + key) % 26 + ascii_offset
+            else: 
+                shifted = (ord(char) - ascii_offset - key) % 26 + ascii_offset
+            result += chr(shifted)
+        else:
+            result += char
+    
+    return result
+if __name__ == "__main__":
+    message = input("Enter a message to encrypt: ")
+    key = int(input("Enter the key (0-25): "))
+    
+    encrypted = caesar_cipher(message, key, 'encrypt')
+    print(f"Encrypted message: {encrypted}")
+    
+    decrypted = caesar_cipher(encrypted, key, 'decrypt')
+    print(f"Decrypted message: {decrypted}")
+```
 
 OUTPUT :-
+![image](https://github.com/user-attachments/assets/6e009a22-ff16-46f7-a024-bbc625215482)
+
